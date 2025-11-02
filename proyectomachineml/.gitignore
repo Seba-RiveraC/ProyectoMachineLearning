@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+
+# Entorno
+.venv/
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Kedro
+data/01_raw/*
+data/02_intermediate/*
+data/03_primary/*
+data/04_feature/*
+# Conserva los resultados finales y modelos:
+!data/06_models/
+!data/07_model_output/
+
+# DVC (si lo usas)
+*.lock
+.cache/

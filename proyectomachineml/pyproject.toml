@@ -1,0 +1,44 @@
+[build-system]
+requires = [ "setuptools",]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "proyectomachineml"
+readme = "README.md"
+dynamic = [ "dependencies", "version",]
+
+[project.scripts]
+proyectomachineml = "proyectomachineml.__main__:main"
+
+[tool.kedro]
+package_name = "proyectomachineml"
+project_name = "ProyectoMachineMl"
+kedro_init_version = "0.19.8"
+tools = [ "Linting", "Data Structure",]
+example_pipeline = "False"
+source_dir = "src"
+
+[tool.ruff]
+line-length = 88
+show-fixes = true
+select = [ "F", "W", "E", "I", "UP", "PL", "T201",]
+ignore = [ "E501",]
+
+[project.entry-points."kedro.hooks"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.setuptools.dynamic.dependencies]
+file = "requirements.txt"
+
+[tool.setuptools.dynamic.version]
+attr = "proyectomachineml.__version__"
+
+[tool.setuptools.packages.find]
+where = [ "src",]
+namespaces = false
+
+[tool.kedro_telemetry]
+project_id = "771863bb9aaf496287676f0eef2eb39b"
+

@@ -1,0 +1,2 @@
+Modelo,Accuracy,Precision,Recall,F1,ROC_AUC,params
+RandomForest (GridSearch),0.8170871559633027,0.8287752675386445,0.7993119266055045,0.8137769994162288,0.9061342690009258,"{'max_depth': 10, 'max_features': 'sqrt', 'min_samples_leaf': 3, 'min_samples_split': 2, 'n_estimators': 300}"

@@ -1,0 +1,71 @@
+# === 01_raw ===
+pib_per_capita_countries:
+  type: kedro_datasets.pandas.CSVDataSet
+  filepath: data/01_raw/pib_per_capita_countries_dataset.csv
+  load_args:
+    sep: ","
+
+pib_per_capita_organizations:
+  type: kedro_datasets.pandas.CSVDataSet
+  filepath: data/01_raw/pib_per_capita_organizations_dataset.csv
+  load_args:
+    sep: ","
+
+life_expectancy:
+  type: kedro_datasets.pandas.CSVDataSet
+  filepath: data/01_raw/life-expectancy.csv
+  load_args:
+    sep: ","
+
+# === 02_intermediate ===
+gdp_cleaned:
+  type: kedro_datasets.pandas.CSVDataSet
+  filepath: data/02_intermediate/gdp_cleaned.csv
+  save_args:
+    index: false
+
+life_cleaned:
+  type: kedro_datasets.pandas.CSVDataSet
+  filepath: data/02_intermediate/life_cleaned.csv
+  save_args:
+    index: false
+
+# === 03_primary ===
+merged_data:
+  type: kedro_datasets.pandas.CSVDataSet
+  filepath: data/03_primary/merged_data.csv
+  save_args:
+    index: false
+
+# === 04_feature ===
+master_table:
+  type: kedro_datasets.pandas.CSVDataSet
+  filepath: data/04_feature/engineered_features.csv
+  save_args:
+    index: false
+
+# ==========================================================
+# 🔹 Outputs de la pipeline de REGRESIÓN
+# ==========================================================
+regression_metrics:
+  type: kedro_datasets.json.JSONDataSet
+  filepath: data/07_model_output/regression_metrics.json
+  save_args:
+    indent: 2
+
+rf_reg_model:
+  type: kedro_datasets.pickle.PickleDataSet
+  filepath: data/06_models/rf_reg_model.pkl
+
+# ==========================================================
+# 🔹 Outputs de la pipeline de CLASIFICACIÓN
+# ==========================================================
+classification_metrics:
+  type: kedro_datasets.json.JSONDataSet
+  filepath: data/07_model_output/classification_metrics.json
+  save_args:
+    indent: 2
+
+rf_clf_model:
+  type: kedro_datasets.pickle.PickleDataSet
+  filepath: data/06_models/rf_clf_model.pkl

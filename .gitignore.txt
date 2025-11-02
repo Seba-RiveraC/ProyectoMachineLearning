@@ -1,0 +1,38 @@
+# ==== ENTORNOS Y DEPENDENCIAS ====
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ==== DATOS PESADOS ====
+data/01_raw/
+data/02_intermediate/
+data/03_primary/
+data/06_models/
+data/07_model_output/
+
+# ==== ARCHIVOS TEMPORALES ====
+.DS_Store
+Thumbs.db
+.ipynb_checkpoints/
+*.log
+*.tmp
+*.bak
+
+# ==== CONFIGURACIONES LOCALES ====
+.env
+*.sqlite3
+*.db
+*.json
+
+# ==== COMPILADOS / BINARIOS ====
+*.exe
+*.dll
+*.so
+*.dylib
+
+# ==== VSCode / IDE ====
+.vscode/
+.idea/
