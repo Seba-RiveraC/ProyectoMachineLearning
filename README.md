@@ -62,7 +62,7 @@ Jupyter Notebook
 
 Git + GitHub
 
-(Opcional: Docker para entorno reproducible)
+Docker para entorno reproducible, el cual no funciono
 
 📈 Resultados Clave
 
