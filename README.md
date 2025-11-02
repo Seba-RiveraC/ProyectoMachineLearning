@@ -1,6 +1,6 @@
 Proyecto ML: Análisis de Correlación entre PIB y Esperanza de Vida
 
-(tuve que resubir el readme por problemas con las branch)
+(tuve que resubir el readme por problemas con las branch, compasion por favor)
 
 Powered by Kedro
 
