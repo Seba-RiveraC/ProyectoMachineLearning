@@ -10,23 +10,7 @@ Este proyecto analiza la relación entre el Producto Interno Bruto (PIB) y la Es
 
 A través de pipelines estructurados, se procesan y limpian datos económicos y demográficos para construir modelos de regresión y clasificación, capaces de estimar y categorizar la esperanza de vida de los países según su desempeño económico.
 
-⚙️ Estructura del Proyecto Kedro
-├── conf/                     # Configuración del proyecto (catalog, parameters, logging)
-│   ├── base/
-│   └── local/
-├── data/                     # Almacenamiento estructurado de datasets
-│   ├── 01_raw/               # Datos originales
-│   ├── 02_intermediate/      # Limpieza / preprocesamiento
-│   ├── 03_primary/           # Datos combinados
-│   ├── 04_feature/           # Features generados
-│   ├── 06_models/            # Modelos entrenados
-│   └── 07_model_output/      # Métricas y resultados
-├── notebooks/                # Notebooks de análisis (EDA, modelado, etc.)
-├── src/proyectomachineml/    # Código principal del proyecto
-│   ├── pipelines/            # Pipelines de regresión y clasificación
-│   ├── nodes/                # Funciones lógicas y de preprocesamiento
-│   └── pipeline_registry.py  # Registro de pipelines
-└── pyproject.toml            # Metadatos del proyecto
+
 
 🚀 Flujo CRISP-DM Implementado
 
