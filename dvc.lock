@@ -1,0 +1,46 @@
+schema: '2.0'
+stages:
+  run_pipeline:
+    cmd: cd proyectomachineml && kedro run
+    deps:
+    - path: proyectomachineml/conf
+      hash: md5
+      md5: 432478a1ac2e3deab41b36e3b6d4f141.dir
+      size: 5361
+      nfiles: 7
+    - path: proyectomachineml/data/01_raw
+      hash: md5
+      md5: d5f94fb846f6ef823f21e02d4d721042.dir
+      size: 3256407
+      nfiles: 4
+    - path: proyectomachineml/data/02_intermediate
+      hash: md5
+      md5: 7c550d07a07285caa3ebab5e4824e3fe.dir
+      size: 3345663
+      nfiles: 3
+    - path: proyectomachineml/data/03_primary
+      hash: md5
+      md5: f0e262c956f5d43891bc00526f7698fc.dir
+      size: 2506935
+      nfiles: 2
+    - path: proyectomachineml/data/05_model_input
+      hash: md5
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
+    - path: proyectomachineml/src
+      hash: md5
+      md5: 807054a4b4551f93bab360bc832c519b.dir
+      size: 71206
+      nfiles: 52
+    outs:
+    - path: proyectomachineml/data/06_models
+      hash: md5
+      md5: bc1d21fdba1c8787ec3c0be40c0bbf7e.dir
+      size: 71083819
+      nfiles: 2
+    - path: proyectomachineml/data/07_model_output
+      hash: md5
+      md5: 5df88d72f497a5713b93bb83e9cc1860.dir
+      size: 4053149
+      nfiles: 11
