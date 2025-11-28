@@ -4,10 +4,10 @@ stages:
     deps:
       - proyectomachineml/src
       - proyectomachineml/conf
-      - proyectomachineml/data/01_raw.dvc
-      - proyectomachineml/data/02_intermediate.dvc
-      - proyectomachineml/data/03_primary.dvc
-      - proyectomachineml/data/05_model_input.dvc
+      - proyectomachineml/data/01_raw
+      - proyectomachineml/data/02_intermediate
+      - proyectomachineml/data/03_primary
+      - proyectomachineml/data/05_model_input
     outs:
       - proyectomachineml/data/06_models
       - proyectomachineml/data/07_model_output
