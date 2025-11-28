@@ -36,3 +36,17 @@ Thumbs.db
 # ==== VSCode / IDE ====
 .vscode/
 .idea/
+
+data/06_models/
+data/07_model_output/
+# Airflow folders
+airflow_home/
+proyectomachineml/airflow/
+
+# Kedro + DVC
+proyectomachineml/data/06_models/
+proyectomachineml/data/07_model_output/
+
+# Evitar datos grandes
+proyectomachineml/data/**/*.pkl
+proyectomachineml/data/**/*.csv
