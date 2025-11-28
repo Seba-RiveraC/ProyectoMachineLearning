@@ -1,0 +1,12 @@
+[core]
+    remote = local_remote
+['remote "gdrive_remote"']
+    url = gdrive://1MPoDmPi1Re929E7UWvOQ7VmM8JrolaED
+    gdrive_use_service_account = false
+['remote "ssh_remote"']
+    url = ssh://localhost/C:/Users/Gamer/dvc_remote
+    user = Gamer
+    port = 22
+    keyfile = C:/Users/Gamer/.ssh/id_rsa
+['remote "local_remote"']
+    url = C:/Users/Gamer/dvc_remote_storage
