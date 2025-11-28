@@ -1,32 +1,45 @@
-#  Predicción de Esperanza de Vida según PIB — Proyecto de Machine Learning
+Predicción de Esperanza de Vida según PIB — Proyecto de Machine Learning
 
-Este proyecto implementa un pipeline completo de ciencia de datos usando **Kedro** y **DVC**, para analizar la relación entre indicadores económicos (como el PIB per cápita) y la esperanza de vida. Incluye modelos supervisados, no supervisados y visualizaciones para presentar resultados de forma clara y reproducible.
+Este proyecto implementa un pipeline completo de ciencia de datos usando Kedro, DVC, Docker y Airflow, para analizar la relación entre indicadores económicos (como el PIB per cápita) y la esperanza de vida. Incluye modelos supervisados, no supervisados y visualizaciones diseñadas para entregar resultados claros y totalmente reproducibles.
 
----
+Objetivos del Proyecto
 
-##  Objetivos del Proyecto
+Analizar cómo el PIB per cápita y otras variables influyen en la esperanza de vida.
 
-- Investigar cómo el PIB per cápita y otras variables explican la esperanza de vida.
-- Aplicar técnicas de aprendizaje supervisado (regresión y clasificación) y no supervisado (clustering).
-- Asegurar la reproducibilidad con herramientas profesionales como Kedro y DVC.
-- Presentar resultados en un cuaderno final de defensa.
+Implementar modelos de regresión, clasificación y clustering.
 
----
+Automatizar flujos mediante Airflow.
 
-##  Tecnologías utilizadas
+Contener y aislar el entorno mediante Docker para asegurar reproducibilidad.
 
-- **Kedro** → gestión modular del pipeline de ML
-- **DVC** → versionado de datos, métricas y modelos
-- **scikit-learn** → modelos de ML
-- **Pandas & matplotlib** → análisis y visualización
-- **UMAP & KMeans** → clustering y reducción de dimensionalidad
-- **Jupyter Notebook** → presentación final integrada
+Tecnologías utilizadas
 
+Kedro: arquitectura modular del pipeline
+
+DVC: versionado de datos, métricas y modelos
+
+Airflow: orquestación de tareas del pipeline
+
+Docker: contenedorización del entorno de ejecución
+
+Scikit-learn: modelos de aprendizaje automático
+
+Pandas, NumPy y matplotlib: análisis y visualización
+
+UMAP y KMeans: análisis no supervisado
+
+Jupyter Notebook: informe final de presentación
+
+Estructura del Proyecto
 PROYECTOMACHINELEARNING/
 ├── .dvc/
 ├── .gitignore
 ├── dockerfile
 ├── dvc.yaml
+├── docker-compose.yaml        # Integración con Airflow (orquestación)
+├── airflow/                   # DAGs y configuración
+│   ├── dags/
+│   └── logs/
 ├── pyproject.toml
 ├── README.md
 │
@@ -74,62 +87,73 @@ PROYECTOMACHINELEARNING/
 │
 └── venv/   (no incluido en el repositorio)
 
-
 ¿Cómo ejecutar este proyecto?
 1. Crear entorno virtual
 python -m venv venv
 
-2. Activar entorno virtual
-
-En Windows:
-
+2. Activar entorno virtual (Windows)
 .\venv\Scripts\activate
 
 3. Instalar dependencias
 pip install -r src/requirements.txt
 
-4. Ejecutar el pipeline de Kedro
+4. Ejecutar el pipeline completo con Kedro
 kedro run
 
-5. (Opcional) Obtener datos y modelos con DVC
+5. (Opcional) Ejecutar pipeline orquestado con Airflow
+docker-compose up -d
+
+
+Los DAGs se cargan desde:
+
+airflow/dags/
+
+6. Obtener datos y modelos versionados con DVC
 dvc pull
 
-6. Ejecutar notebook de defensa
+7. Ejecutar notebook de defensa
 jupyter notebook notebooks/Defensa_Final_Presentacion.ipynb
 
-  Resultados destacados
+Resultados destacados
 
-Clasificación (Random Forest): ROC-AUC ≈ 0.906
+Clasificación (Random Forest):
+ROC-AUC ≈ 0.906
 
-Regresión (Random Forest): R² ≈ 0.636, RMSE ≈ 6.87, MAE ≈ 5.14
+Regresión (Random Forest):
+R² ≈ 0.636
+RMSE ≈ 6.87
+MAE ≈ 5.14
 
-Clustering (UMAP + KMeans): Agrupación clara de países según PIB y esperanza de vida
+Clustering (UMAP + KMeans):
+Agrupación clara de países según PIB y esperanza de vida.
 
- ¿Qué incluye este repositorio?
+¿Qué incluye este repositorio?
 
-Limpieza y preparación de datos
+Limpieza y preparación de datos.
 
-Modelado supervisado: clasificación y regresión
+Modelado supervisado (clasificación y regresión).
 
-Análisis no supervisado: clustering + reducción dimensional (UMAP)
+Modelado no supervisado (UMAP + KMeans, DBSCAN).
 
-Comparación de métricas y visualizaciones listas para defensa
+Comparación de métricas y visualizaciones.
 
-Reproducibilidad garantizada con Kedro + DVC
+Reproducibilidad con Kedro, DVC y Docker.
 
-Notebook final integrado para la presentación:
+Integración de flujo automatizado mediante Airflow.
 
-notebooks/Defensa_Final_Presentacion.ipynb
+notebooks/Presentacion.ipynb
 
-  Reproducibilidad
+Reproducibilidad
 
-El pipeline completo puede ejecutarse desde cero con:
+El pipeline completo puede ejecutarse con:
 
 kedro run
 
 
-Todos los outputs están controlados por DVC (dvc.yaml)
+Los datos, modelos y métricas están controlados por DVC.
 
-Los modelos y métricas se guardan automáticamente en carpetas versionadas
+Los flujos automatizados están disponibles como DAGs de Airflow.
 
-Los datos están organizados ordenadamente en /data según cada etapa del pipeline
+La contenedorización mediante Docker asegura uniformidad entre entornos.
+
+Los artefactos se organizan por etapas en la carpeta /data.
