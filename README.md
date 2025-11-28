@@ -22,33 +22,58 @@ Este proyecto implementa un pipeline completo de ciencia de datos usando **Kedro
 - **UMAP & KMeans** → clustering y reducción de dimensionalidad
 - **Jupyter Notebook** → presentación final integrada
 
----
-
-##  Estructura del Proyecto
-
-proyectomachinelearning/
-├── data/ # Controlado por DVC
-│ ├── 01_raw/ # Datos originales
-│ ├── 03_primary/ # Datos fusionados
-│ ├── 04_feature/ # Dataset final con etiquetas
-│ ├── 06_models/ # Modelos entrenados
-│ ├── 07_model_output/ # Métricas finales
-│ └── 08_reporting/ # Reportes de ejecución
-├── notebooks/
-│ ├── 01_business_understanding.ipynb
-│ ├── 02_data_preparation.ipynb
-│ └── Presentacion.ipynb
-├── src/ # Código fuente Kedro
-│ ├── proyectomachinelearning/
-│ └── requirements.txt
+PROYECTOMACHINELEARNING/
+├── .dvc/
+├── .gitignore
+├── dockerfile
 ├── dvc.yaml
 ├── pyproject.toml
-└── README.md
+├── README.md
+│
+├── data/
+│   ├── 01_raw/
+│   ├── 02_intermediate/
+│   ├── 03_primary/
+│   ├── 04_feature/
+│   ├── 05_model_input/
+│   ├── 06_models/
+│   ├── 07_model_output/
+│   │   ├── best_classification_model.pkl
+│   │   ├── best_regression_model.pkl
+│   │   ├── classification_metrics.json
+│   │   ├── dbscan_clustered.csv
+│   │   ├── kmeans_clustered.csv
+│   │   ├── pca_embedding.csv
+│   │   ├── regression_metrics.json
+│   │   └── umap_embedding.csv
+│   └── 08_reporting/
+│
+├── notebooks/
+│   ├── 01_business_understanding.ipynb
+│   ├── 02_data_preparation.ipynb
+│   ├── 03_data_understanding.ipynb
+│   ├── analysis_report.ipynb
+│   └── Presentacion.ipynb
+│
+├── src/
+│   ├── proyectomachinelearning/
+│   │   ├── __init__.py
+│   │   ├── pipeline_registry.py
+│   │   ├── settings.py
+│   │   │
+│   │   ├── pipelines/
+│   │   │   ├── data_cleaning/
+│   │   │   ├── data_engineering/
+│   │   │   ├── data_science/
+│   │   │   ├── regression/
+│   │   │   ├── reporting/
+│   │   │   └── unsupervised_learning/
+│   │   │
+│   │   └── tests/
+│   └── requirements.txt
+│
+└── venv/   (no incluido en el repositorio)
 
-yaml
-Copiar código
-
----
 
 ¿Cómo ejecutar este proyecto?
 1. Crear entorno virtual
