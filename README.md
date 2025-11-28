@@ -55,25 +55,25 @@ Copiar código
 ### 1. Crear entorno virtual
 ```bash
 python -m venv venv
-2. Activar entorno virtual
+### 2. Activar entorno virtual
 En Windows:
 
 bash
 Copiar código
 .\venv\Scripts\activate
-3. Instalar dependencias
+### 3. Instalar dependencias
 bash
 Copiar código
 pip install -r src/requirements.txt
-4. Ejecutar el pipeline de Kedro
+### 4. Ejecutar el pipeline de Kedro
 bash
 Copiar código
 kedro run
-5. (Opcional) Usar DVC para obtener los datos y modelos
+### 5. (Opcional) Usar DVC para obtener los datos y modelos
 bash
 Copiar código
 dvc pull
-6. Ejecutar notebook de defensa
+### 6. Ejecutar notebook de defensa
 bash
 Copiar código
 jupyter notebook notebooks/Defensa_Final_Presentacion.ipynb
