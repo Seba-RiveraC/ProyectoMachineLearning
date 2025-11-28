@@ -1,3 +1,5 @@
+
+
 # === 01_raw ===
 pib_per_capita_countries:
   type: kedro_datasets.pandas.CSVDataSet
@@ -44,9 +46,13 @@ master_table:
   save_args:
     index: false
 
-# ==========================================================
-# 🔹 Outputs de la pipeline de REGRESIÓN
-# ==========================================================
+unsupervised_preprocessed:
+  type: kedro_datasets.pandas.CSVDataSet
+  filepath: data/04_feature/unsupervised_preprocessed.csv
+  save_args:
+    index: false
+
+# === Outputs supervisados ===
 regression_metrics:
   type: kedro_datasets.json.JSONDataSet
   filepath: data/07_model_output/regression_metrics.json
@@ -57,9 +63,6 @@ rf_reg_model:
   type: kedro_datasets.pickle.PickleDataSet
   filepath: data/06_models/rf_reg_model.pkl
 
-# ==========================================================
-# 🔹 Outputs de la pipeline de CLASIFICACIÓN
-# ==========================================================
 classification_metrics:
   type: kedro_datasets.json.JSONDataSet
   filepath: data/07_model_output/classification_metrics.json
@@ -69,3 +72,54 @@ classification_metrics:
 rf_clf_model:
   type: kedro_datasets.pickle.PickleDataSet
   filepath: data/06_models/rf_clf_model.pkl
+
+# === Unsupervised outputs ===
+kmeans_clustered:
+  type: kedro_datasets.pandas.CSVDataSet
+  filepath: data/07_model_output/kmeans_clustered.csv
+  save_args:
+    index: false
+kmeans_metrics:
+  type: kedro_datasets.json.JSONDataSet
+  filepath: data/07_model_output/kmeans_metrics.json
+  save_args:
+    indent: 2
+
+dbscan_clustered:
+  type: kedro_datasets.pandas.CSVDataSet
+  filepath: data/07_model_output/dbscan_clustered.csv
+  save_args:
+    index: false
+dbscan_metrics:
+  type: kedro_datasets.json.JSONDataSet
+  filepath: data/07_model_output/dbscan_metrics.json
+  save_args:
+    indent: 2
+
+agg_clustered:
+  type: kedro_datasets.pandas.CSVDataSet
+  filepath: data/07_model_output/agg_clustered.csv
+  save_args:
+    index: false
+agg_metrics:
+  type: kedro_datasets.json.JSONDataSet
+  filepath: data/07_model_output/agg_metrics.json
+  save_args:
+    indent: 2
+
+pca_embedding:
+  type: kedro_datasets.pandas.CSVDataSet
+  filepath: data/07_model_output/pca_embedding.csv
+  save_args:
+    index: false
+pca_metrics:
+  type: kedro_datasets.json.JSONDataSet
+  filepath: data/07_model_output/pca_metrics.json
+  save_args:
+    indent: 2
+
+umap_embedding:
+  type: kedro_datasets.pandas.CSVDataSet
+  filepath: data/07_model_output/umap_embedding.csv
+  save_args:
+    index: false

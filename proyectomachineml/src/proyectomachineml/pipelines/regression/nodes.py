@@ -1,58 +1,72 @@
-import numpy as np
 import pandas as pd
+import numpy as np
 from sklearn.model_selection import train_test_split
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
-# --- CONFIG ---
+# Columnas correctas del master_table
 FEATURES = ["gdp_per_capita", "gdp_variation", "year"]
-TARGET = "period_life_expectancy_at_birth"
+
+# Target correcto
+TARGET = "life_expectancy"
 
 
-# --- NODOS ---
 def prepare_data_reg(merged_data: pd.DataFrame):
-    """Prepara los datos para regresión."""
+    """Prepara datos para regresión."""
     df = merged_data.copy()
 
-    # Asegurar columnas numéricas
+    # Convertir a numérico
     for col in FEATURES + [TARGET]:
         df[col] = pd.to_numeric(df[col], errors="coerce")
 
+    # Eliminar filas incompletas
     df = df.dropna(subset=FEATURES + [TARGET])
 
     X = df[FEATURES]
     y = df[TARGET]
 
+    # Split
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42
+        X, y, test_size=0.25, random_state=42
     )
-    return X_train, X_test, y_train, y_test
+
+    # Imputación
+    imp = SimpleImputer(strategy="median")
+    X_train_imp = imp.fit_transform(X_train)
+    X_test_imp = imp.transform(X_test)
+
+    # Escalamiento
+    scaler = StandardScaler()
+    X_train_s = scaler.fit_transform(X_train_imp)
+    X_test_s = scaler.transform(X_test_imp)
+
+    return X_train_s, X_test_s, y_train, y_test
 
 
-def train_rf_reg(X_train: pd.DataFrame, y_train: pd.Series):
-    """Entrena un modelo RandomForest Regressor."""
+def train_rf_reg(X_train_s, y_train):
+    """Entrena un modelo RandomForest para regresión."""
     rf = RandomForestRegressor(
-        n_estimators=300,
-        max_depth=8,
-        min_samples_split=8,
+        n_estimators=500,
+        max_depth=12,
+        min_samples_leaf=3,
         random_state=42,
-        n_jobs=-1,
+        n_jobs=-1
     )
-    rf.fit(X_train, y_train)
+    rf.fit(X_train_s, y_train)
     return rf
 
 
-def evaluate_reg(model: RandomForestRegressor, X_test: pd.DataFrame, y_test: pd.Series):
-    """Evalúa el modelo y devuelve un DataFrame con métricas."""
-    y_pred = model.predict(X_test)
+def evaluate_reg(model: RandomForestRegressor, X_test_s, y_test):
+    """Evalúa un modelo de regresión."""
+    pred = model.predict(X_test_s)
 
-    metrics = {
-        "Modelo": "RandomForest (Regresión)",
-        "R2": r2_score(y_test, y_pred),
-        "RMSE": float(np.sqrt(mean_squared_error(y_test, y_pred))),
-        "MAE": float(mean_absolute_error(y_test, y_pred)),
-        "params": str(model.get_params()),
+    return {
+        "Modelo": "RandomForestRegressor",
+        "MAE": mean_absolute_error(y_test, pred),
+        "MSE": mean_squared_error(y_test, pred),
+        "RMSE": np.sqrt(mean_squared_error(y_test, pred)),
+        "R2": r2_score(y_test, pred),
+        "params": str(model.get_params())
     }
-
-    # 🔧 CSVDataSet necesita DataFrame
-    return pd.DataFrame([metrics])

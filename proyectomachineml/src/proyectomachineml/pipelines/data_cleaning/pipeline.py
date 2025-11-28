@@ -1,49 +1,30 @@
-# src/proyectomachineml/pipelines/data_cleaning/pipeline.py
+"""
+Pipeline de limpieza y preparación de datos.
+
+Esta pipeline lee los datasets crudos definidos en el catálogo, los limpia,
+los combina y genera una tabla maestra lista para el modelado.
+"""
+
+from __future__ import annotations
 from kedro.pipeline import Pipeline, node
-from .nodes import clean_gdp_data, clean_life_data, merge_data, feature_engineering
+from .nodes import (
+    clean_gdp_countries,
+    clean_gdp_organizations,
+    combine_gdp_datasets,
+    clean_life_expectancy,
+    merge_datasets,
+    feature_engineering,
+)
 
 def create_pipeline(**kwargs) -> Pipeline:
-    """
-    Crea el pipeline de ingeniería de datos.
-    
-    Args:
-        kwargs: Parámetros del proyecto.
-        
-    Returns:
-        El pipeline completo.
-    """
+    """Construye la pipeline de limpieza."""
     return Pipeline(
         [
-            # Nodo para limpiar los datos de GDP
-            node(
-                func=clean_gdp_data,
-                inputs="countriesgdphist",
-                outputs="gdp_cleaned",
-                name="clean_gdp_data_node",
-            ),
-            
-            # Nodo para limpiar los datos de esperanza de vida
-            node(
-                func=clean_life_data,
-                inputs="lifeexpectancy",
-                outputs="life_cleaned",
-                name="clean_life_data_node",
-            ),
-            
-            # Nodo para fusionar los datasets limpios
-            node(
-                func=merge_data,
-                inputs=["gdp_cleaned", "life_cleaned"],
-                outputs="merged_data",
-                name="merge_data_node",
-            ),
-            
-            # Nodo para realizar ingeniería de características (opcional)
-            node(
-                func=feature_engineering,
-                inputs="merged_data",
-                outputs="engineered_features",
-                name="feature_engineering_node",
-            )
+            node(clean_gdp_countries, "pib_per_capita_countries", "gdp_countries_clean", name="clean_gdp_countries"),
+            node(clean_gdp_organizations, "pib_per_capita_organizations", "gdp_organizations_clean", name="clean_gdp_organizations"),
+            node(combine_gdp_datasets, ["gdp_countries_clean", "gdp_organizations_clean"], "gdp_cleaned", name="combine_gdp_datasets"),
+            node(clean_life_expectancy, "life_expectancy", "life_cleaned", name="clean_life_expectancy"),
+            node(merge_datasets, ["gdp_cleaned", "life_cleaned"], "merged_data", name="merge_datasets"),
+            node(feature_engineering, "merged_data", "master_table", name="feature_engineering"),
         ]
     )

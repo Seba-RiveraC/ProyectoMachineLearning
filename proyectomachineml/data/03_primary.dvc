@@ -1,0 +1,6 @@
+outs:
+- md5: f0e262c956f5d43891bc00526f7698fc.dir
+  size: 2506935
+  nfiles: 2
+  hash: md5
+  path: 03_primary

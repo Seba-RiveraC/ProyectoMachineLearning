@@ -9,7 +9,7 @@ from sklearn.metrics import (
 )
 
 FEATURES = ["gdp_per_capita", "gdp_variation", "year"]
-TARGET_CONT = "period_life_expectancy_at_birth"
+TARGET_CONT = "life_expectancy"
 
 
 def prepare_data_clf(merged_data: pd.DataFrame):
@@ -51,20 +51,23 @@ def train_rf_clf(X_train_imp, y_train):
     rf.fit(X_train_imp, y_train)
     return rf
 
-
 def evaluate_clf(model: RandomForestClassifier, X_test_imp, y_test):
-    """Evalúa el modelo y devuelve DataFrame con métricas."""
+    """Evalúa el modelo y devuelve un dict JSON-serializable."""
     proba = model.predict_proba(X_test_imp)[:, 1]
     pred = (proba >= 0.5).astype(int)
 
     metrics = {
         "Modelo": "RandomForest (Clasificación)",
-        "Accuracy": accuracy_score(y_test, pred),
-        "Precision": precision_score(y_test, pred),
-        "Recall": recall_score(y_test, pred),
-        "F1": f1_score(y_test, pred),
-        "ROC_AUC": roc_auc_score(y_test, proba),
-        "params": str(model.get_params())
+        "Accuracy": float(accuracy_score(y_test, pred)),
+        "Precision": float(precision_score(y_test, pred)),
+        "Recall": float(recall_score(y_test, pred)),
+        "F1": float(f1_score(y_test, pred)),
+        "ROC_AUC": float(roc_auc_score(y_test, proba)),
+        "params": {k: str(v) for k, v in model.get_params().items()}
     }
 
-    return pd.DataFrame([metrics])
+    # ← DEVOLVEMOS DICCIONARIO, NO DATAFRAME
+    return metrics
+
+
+
