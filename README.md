@@ -50,60 +50,61 @@ Copiar código
 
 ---
 
-##  ¿Cómo ejecutar este proyecto?
-
-### 1. Crear entorno virtual
-```bash
+¿Cómo ejecutar este proyecto?
+1. Crear entorno virtual
 python -m venv venv
-### 2. Activar entorno virtual
+
+2. Activar entorno virtual
+
 En Windows:
 
-bash
-Copiar código
 .\venv\Scripts\activate
-### 3. Instalar dependencias
-bash
-Copiar código
+
+3. Instalar dependencias
 pip install -r src/requirements.txt
-### 4. Ejecutar el pipeline de Kedro
-bash
-Copiar código
+
+4. Ejecutar el pipeline de Kedro
 kedro run
-### 5. (Opcional) Usar DVC para obtener los datos y modelos
-bash
-Copiar código
+
+5. (Opcional) Obtener datos y modelos con DVC
 dvc pull
-### 6. Ejecutar notebook de defensa
-bash
-Copiar código
+
+6. Ejecutar notebook de defensa
 jupyter notebook notebooks/Defensa_Final_Presentacion.ipynb
- Resultados destacados
- Clasificación (Random Forest): ROC-AUC ≈ 0.906
 
- Regresión (Random Forest): R² ≈ 0.636, RMSE ≈ 6.87, MAE ≈ 5.14
+  Resultados destacados
 
- Clustering (UMAP + KMeans): agrupación clara de países según PIB y esperanza de vida
+Clasificación (Random Forest): ROC-AUC ≈ 0.906
 
- Qué incluye este repositorio
- Limpieza y preparación de datos
+Regresión (Random Forest): R² ≈ 0.636, RMSE ≈ 6.87, MAE ≈ 5.14
 
- Modelado supervisado: clasificación y regresión
+Clustering (UMAP + KMeans): Agrupación clara de países según PIB y esperanza de vida
 
- Análisis no supervisado: clustering + reducción dimensionalidad
+ ¿Qué incluye este repositorio?
 
- Comparación de métricas
+Limpieza y preparación de datos
 
- Visualizaciones listas para defensa
+Modelado supervisado: clasificación y regresión
 
- Reproducibilidad con Kedro + DVC
+Análisis no supervisado: clustering + reducción dimensional (UMAP)
 
- Cuaderno final integrado para presentación (Defensa_Final_Presentacion.ipynb)
+Comparación de métricas y visualizaciones listas para defensa
 
- Reproducibilidad
-El pipeline completo puede ejecutarse desde cero con kedro run
+Reproducibilidad garantizada con Kedro + DVC
+
+Notebook final integrado para la presentación:
+
+notebooks/Defensa_Final_Presentacion.ipynb
+
+  Reproducibilidad
+
+El pipeline completo puede ejecutarse desde cero con:
+
+kedro run
+
 
 Todos los outputs están controlados por DVC (dvc.yaml)
 
 Los modelos y métricas se guardan automáticamente en carpetas versionadas
 
-Los datos de entrada y salida están organizados en /data por etapa
+Los datos están organizados ordenadamente en /data según cada etapa del pipeline
