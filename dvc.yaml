@@ -1,0 +1,13 @@
+stages:
+  run_pipeline:
+    cmd: kedro run
+    deps:
+      - proyectomachineml/src
+      - proyectomachineml/conf
+      - proyectomachineml/data/01_raw.dvc
+      - proyectomachineml/data/02_intermediate.dvc
+      - proyectomachineml/data/03_primary.dvc
+      - proyectomachineml/data/05_model_input.dvc
+    outs:
+      - proyectomachineml/data/06_models
+      - proyectomachineml/data/07_model_output
