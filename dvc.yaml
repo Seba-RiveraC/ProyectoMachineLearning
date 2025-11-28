@@ -1,6 +1,6 @@
 stages:
   run_pipeline:
-    cmd: kedro run
+    cmd: cd proyectomachineml && kedro run
     deps:
       - proyectomachineml/src
       - proyectomachineml/conf
@@ -11,3 +11,4 @@ stages:
     outs:
       - proyectomachineml/data/06_models
       - proyectomachineml/data/07_model_output
+
