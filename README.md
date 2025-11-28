@@ -30,36 +30,72 @@ UMAP y KMeans: análisis no supervisado
 
 Jupyter Notebook: informe final de presentación
 
-Estructura del Proyecto
+## Estructura del Proyecto
+
+```text
 PROYECTOMACHINELEARNING/
 ├── .dvc/
 ├── .gitignore
 ├── dockerfile
 ├── dvc.yaml
-├── docker-compose.yaml        # Integración con Airflow (orquestación)
-├── airflow/                   # DAGs y configuración
-│   ├── dags/
-│   └── logs/
+├── gitignore.txt
+├── ml_pipeline_master.py
 ├── pyproject.toml
 ├── README.md
 │
+├── proyectomachinelearning_home/
+│   └── (archivos locales del entorno de trabajo)
+│
+├── viz/
+│   └── (visualizaciones generadas externamente)
+│
 ├── data/
 │   ├── 01_raw/
+│   │   ├── life_expectancy.csv
+│   │   ├── pib_per_capita.csv
+│   │   ├── pib_per_capita_country.csv
+│   │   └── pib_per_capita_wb.csv
+│   │
 │   ├── 02_intermediate/
+│   │   ├── lfe_cleaned.csv
+│   │   ├── pib_cleaned.csv
+│   │   └── merged_cleaned.csv
+│   │
 │   ├── 03_primary/
+│   │   ├── merged_data.csv
+│   │   └── aggregated_data.csv
+│   │
 │   ├── 04_feature/
+│   │   ├── engineered_features.csv
+│   │   ├── scaled_dataset.csv
+│   │   ├── feature_selected.csv
+│   │   └── processed_features.csv
+│   │
 │   ├── 05_model_input/
+│   │   ├── X_train.csv
+│   │   ├── y_train.csv
+│   │   ├── X_test.csv
+│   │   └── y_test.csv
+│   │
 │   ├── 06_models/
-│   ├── 07_model_output/
+│   │   ├── rf_clf_model.pkl
+│   │   ├── rf_reg_model.pkl
 │   │   ├── best_classification_model.pkl
-│   │   ├── best_regression_model.pkl
+│   │   └── best_regression_model.pkl
+│   │
+│   ├── 07_model_output/
+│   │   ├── agg_metrics.json
+│   │   ├── agg_metrics.csv
 │   │   ├── classification_metrics.json
+│   │   ├── regression_metrics.json
 │   │   ├── dbscan_clustered.csv
 │   │   ├── kmeans_clustered.csv
 │   │   ├── pca_embedding.csv
-│   │   ├── regression_metrics.json
 │   │   └── umap_embedding.csv
+│   │
 │   └── 08_reporting/
+│       ├── report.html
+│       └── report.json
 │
 ├── notebooks/
 │   ├── 01_business_understanding.ipynb
@@ -76,16 +112,42 @@ PROYECTOMACHINELEARNING/
 │   │   │
 │   │   ├── pipelines/
 │   │   │   ├── data_cleaning/
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── nodes.py
+│   │   │   │
 │   │   │   ├── data_engineering/
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── nodes.py
+│   │   │   │
 │   │   │   ├── data_science/
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── nodes.py
+│   │   │   │
 │   │   │   ├── regression/
-│   │   │   ├── reporting/
-│   │   │   └── unsupervised_learning/
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── nodes.py
+│   │   │   │
+│   │   │   ├── unsupervised_preprocessing/
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── nodes.py
+│   │   │   │
+│   │   │   ├── unsupervised_learning/
+│   │   │   │   ├── __init__.py
+│   │   │   │   └── nodes.py
+│   │   │   │
+│   │   │   └── reporting/
+│   │   │       ├── __init__.py
+│   │   │       └── nodes.py
 │   │   │
 │   │   └── tests/
+│   │       ├── __init__.py
+│   │       └── test_pipelines.py
+│   │
 │   └── requirements.txt
 │
 └── venv/   (no incluido en el repositorio)
+```
+
 
 ¿Cómo ejecutar este proyecto?
 1. Crear entorno virtual
