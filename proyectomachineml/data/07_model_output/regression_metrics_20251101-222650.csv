@@ -1,2 +1,0 @@
-Modelo,R2,RMSE,MAE,params
-RandomForest (GridSearch),0.6361448888611128,6.870023398288965,5.114898190701261,"{'max_depth': 8, 'min_samples_split': 8, 'n_estimators': 300}"
